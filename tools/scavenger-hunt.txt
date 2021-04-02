@@ -1,0 +1,24 @@
+I am running this on a Mac with software Big Sur (11.2.3)
+
+1) ipconfig getifaddr en0
+
+2) nslookup machine-name.domain.name
+
+3) nslookup IP_ADDRESS
+
+4) scp FILE_PATH_1 hostname@IP_ADDRESS_OF_MY_COMPUTER: FILE_PATH_2
+
+    Where FILE_PATH_1 is where the file is on the VM and
+    FILE_PATH_2 is where I want the file to go on my computer
+
+    For me this could be: scp /Users/riaz/test.txt eduroam-180-86.dyn.carleton.edu@137.22.180.86: /Users/RiazKelly/Desktop
+
+    If I want to download the file onto my Desktop
+
+5) netstat -anv | grep PORT_NUMBER
+
+6) lsof -i
+
+7) curl -O HTTP_ADDRESS
+
+8) curl --verbose HTTP_ADDRESS
