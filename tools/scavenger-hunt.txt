@@ -5,6 +5,7 @@ I am running this on a Mac with software Big Sur (11.2.3)
 1) ipconfig getifaddr en0
 
 2) nslookup machine-name.domain.name
+    can use host or dig instead of nslookup
 
 3) nslookup IP_ADDRESS
 
