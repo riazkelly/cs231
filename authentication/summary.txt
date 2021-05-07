@@ -1,0 +1,20 @@
+Note:
+We were unable to run programs fast enough to get significant results for 2-word-concatenated passwords, so we were only aiming to crack single word passwords.
+
+Part 1
+Passwords cracked: 1162
+Total time: .761s
+Number of hashes computed: 267751
+Passwords cracked per number of hashes computed: ~.004 passwords/hash
+Time per password cracked: .0006s/passwords
+
+Part 2
+Passwords cracked: 1133
+Total time: 24 minutes 22.256 seconds
+Number of hashes computed: 622788826
+Passwords cracked per number of hashes computed: 0.00000182 passwords/hash
+Time per password cracked: 0.0215 seconds/passwords
+
+
+Factor by which your time per password lengthened, and why.
+Times 35.83. This is because the number of hashes computed is much higher.

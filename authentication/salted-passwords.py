@@ -24,39 +24,60 @@ def main():
     words = [line.strip().lower() for line in open('words.txt')]
     guessed_passwords = []
 
-    users = open("passwords1.txt", "r")
+    with open("passwords1.txt") as f:
+        users = f.read().splitlines()
 
     count = 0
-    for word in words:
-        count += 1
+    hashcount = 0
+    possible_passwords = {}
 
-    print(count)
+    for word in words:
+        for user in users:
+            colon1 = user.find(":")
+            dollar = user.find("$")
+            salt = user[colon1 + 1:dollar]
+            hash = compute_hash(salt + word)
+            possible_passwords[hash] = word
+            count += 1
 
     for user in users:
-        colon1 = user.find(":")
-        colon2 = user.find(":", colon1 + 1)
         dollar = user.find("$")
-        salt = user[colon1 + 1:dollar]
+        colon2 = user.find(":", dollar + 1)
         password = user[dollar + 1:colon2]
+        if password in possible_passwords:
+            hashcount += 1
+            user_password = user[0:colon1] + ":" + possible_passwords[password]
+            print(user_password)
 
-        for word in words:
-            word = salt + word
-            word_hash = compute_hash(word)
-            print(word_hash)
+    print(count)
+    print(hashcount)
 
-            if(word_hash == password):
-                user_password = user[0:colon1] + ":" + password
-                guessed_passwords.append(user_password)
-                print(user_password + "\n")
 
-            for word2 in words:
-                long_word = salt + word + word2
-                long_word_hash = compute_hash(long_word)
+    # for user in users:
+    #     colon1 = user.find(":")
+    #     colon2 = user.find(":", colon1 + 1)
+    #     dollar = user.find("$")
+    #     salt = user[colon1 + 1:dollar]
+    #     password = user[dollar + 1:colon2]
+    #
+    #     for word in words:
+    #         word = salt + word
+    #         word_hash = compute_hash(word)
+    #         # print(word_hash)
+    #
+    #         if(word_hash == password):
+    #             user_password = user[0:colon1] + ":" + word
+    #             guessed_passwords.append(user_password)
+    #             print(user_password + "\n")
 
-                if(long_word_hash == password):
-                    user_password = user[0:colon1] + ":" + password
-                    guessed_passwords.append(user_password)
-                    print(user_password + "\n")
+            # for word2 in words:
+            #     long_word = salt + word + word2
+            #     long_word_hash = compute_hash(long_word)
+            #
+            #     if(long_word_hash == password):
+            #         user_password = user[0:colon1] + ":" + password
+            #         guessed_passwords.append(user_password)
+            #         print(user_password + "\n")
 
     # for password in guessed_passwords:
     #     print(password + "\n")
